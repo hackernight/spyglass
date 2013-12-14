@@ -13,7 +13,24 @@ class AcoustID(object):
 
 	def lookup(self, fingerprint, duration):
 		url = self.formatUrl({'duration':duration, 'fingerprint':fingerprint, 'meta':'recordings+releasegroups+compress'}, BASE_URL, LOOKUP_PATH)
-		return json.load(urllib2.urlopen(url))
+		response =  json.load(urllib2.urlopen(url))
+		if response["status"] != "ok":
+			return {}
+		return self.getRelaventInfo(response)
+
+	def getRelaventInfo(self, jsonBlob):
+		ret = {}
+		results = jsonBlob['results']
+		for recording in results:
+			if recording is not None:
+				ret['artist'] = recording['recordings'][0]['artists'][0]['name']
+				ret['title'] = recording['recordings'][0]['title']
+			#todo: we're taking the first one here, but this can appear on more than one 
+			#album (i.e. greatest hits.)
+				for album in recording['recordings'][0]['releasegroups']:
+					if album is not None:
+						ret['album'] = album['title']
+		return ret
 
 	def formatUrl(self, queryParams, url, path):
 		ret = ""
