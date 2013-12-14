@@ -12,10 +12,10 @@ class TestSequenceFunctions(unittest.TestCase):
         print "I set myself up the bomb"  
 
     def test_veryDescriptiveName(self):
-        assertTrue()
+        self.assertTrue(True)
 
     def test_veryVERYDescriptiveName(self):
-        assertTrue()
+        self.assertEqual(1,1)
     
     # If necessary
     def tearDown(self):
