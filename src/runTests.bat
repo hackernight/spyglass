@@ -1,2 +1,2 @@
 @echo off
-python -m unittest test
+python -m unittest discover test
