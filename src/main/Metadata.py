@@ -5,6 +5,7 @@ from mutagen.mp3 import MP3
 from mutagen.easyid3 import EasyID3
 import mutagen
 
+#The songhandler will, in the future, be able to use more than just MP3
 
 class SongHandler:
 	def __init__(self, path, eValsIn):
@@ -17,8 +18,9 @@ class SongHandler:
 		except:
 			return ''
 
-	def setVal(self, fieldIn, valIn):
-		audio[fieldIn] = valIn
+	def setVal(self, values):
+		for currentField in values:
+			audio[currentField] = values[currentField]
 		audio.save()
 
 	def returnExpectedFields(self):
