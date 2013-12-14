@@ -35,6 +35,6 @@ def suite_implOption2():
     tests = ['test_veryDescriptiveName', 'test_veryVERYDescriptiveName']
     return unittest.TestSuite(map(WidgetTestCase, tests))
 
-# Required
+# Required to run this individually
 if __name__ == '__main__':
     unittest.main()
