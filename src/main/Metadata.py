@@ -1,4 +1,3 @@
-from os import listdir
 from os.path import isfile, join
 import os
 from mutagen.mp4 import MP4
@@ -8,8 +7,9 @@ import mutagen
 
 
 class SongHandler:
-	def __init__(self, path):
+	def __init__(self, path, eValsIn):
 		self.audio = EasyID3(path)
+		self.listOfExpectedValues = eValsIn
 
 	def getVal(self, fieldIn):
 		try:
@@ -20,6 +20,12 @@ class SongHandler:
 	def setVal(self, fieldIn, valIn):
 		audio[fieldIn] = valIn
 		audio.save()
+
+	def returnExpectedFields(self):
+		returnDict = {};
+		for strVal in self.listOfExpectedValues:
+			returnDict[strVal] = self.getVal(strVal)
+		return returnDict
 
 if __name__ == "__main__":
 	inputPath = "../../../Test/Input/"
@@ -43,5 +49,7 @@ if __name__ == "__main__":
 	except:
 		print('')
 
-	newSongClass = SongHandler(inputPath + "\\" + songName3)
+	newSongClass = SongHandler(inputPath + "\\" + songName3,['date','artist','title','composer'])
 	print(newSongClass.getVal('date'))
+
+	print(newSongClass.returnExpectedFields())
