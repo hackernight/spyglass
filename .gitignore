@@ -34,6 +34,10 @@ coverage.xml
 # Translations
 *.mo
 
+#sublime text
+*.sublime-workspace
+*.sublime-project
+
 # Mr Developer
 .mr.developer.cfg
 .project
