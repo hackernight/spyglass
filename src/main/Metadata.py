@@ -49,7 +49,7 @@ if __name__ == "__main__":
 	except:
 		print('')
 
-	newSongClass = SongHandler(inputPath + "\\" + songName3,['date','artist','title','composer'])
+	newSongClass = SongHandler(inputPath + "\\" + songName3,['artist','title','album']) 
 	print(newSongClass.getVal('date'))
 
 	print(newSongClass.returnExpectedFields())
