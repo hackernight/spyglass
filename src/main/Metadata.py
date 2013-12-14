@@ -17,8 +17,9 @@ class SongHandler:
 		except:
 			return ''
 
-	def setVal(self, fieldIn, valIn):
-		audio[fieldIn] = valIn
+	def setVal(self, values):
+		for currentField in values:
+			audio[currentField] = values[currentField]
 		audio.save()
 
 	def returnExpectedFields(self):
